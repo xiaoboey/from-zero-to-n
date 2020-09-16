@@ -1,0 +1,36 @@
+
+server:
+  port: 8080
+  address: localhost
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info", "shutdown"]
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  server:
+    port: 7080

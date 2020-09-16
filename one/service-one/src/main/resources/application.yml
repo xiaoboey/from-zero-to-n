@@ -1,0 +1,30 @@
+
+server:
+  port: 8081
+  #address: localhost
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-one
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info", "shutdown"]
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  server:
+    port: 7081

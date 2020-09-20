@@ -33,6 +33,22 @@ spring:
                   - POST
                 exceptions:
                   - java.io.IOException
+        - id: service-two
+          uri: lb://service-two
+          predicates:
+            - Path=/service-two/**
+          filters:
+            - StripPrefix=1
+            - name: Retry
+              args:
+                retries: 1
+                series:
+                  - SERVER_ERROR
+                methods:
+                  - GET
+                  - POST
+                exceptions:
+                  - java.io.IOException
 
 eureka:
   client:

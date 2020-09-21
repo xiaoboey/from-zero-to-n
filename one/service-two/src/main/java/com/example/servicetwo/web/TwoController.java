@@ -2,6 +2,7 @@ package com.example.servicetwo.web;
 
 import com.example.servicetwo.feign.IServiceOneFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/feign-test")
 public class TwoController {
-    @Autowired
-    private IServiceOneFeignClient serviceOneFeignClient;
+    private final IServiceOneFeignClient serviceOneFeignClient;
+
+    public TwoController(@Qualifier("serviceOneFeignClient") IServiceOneFeignClient serviceOneFeignClient) {
+        this.serviceOneFeignClient = serviceOneFeignClient;
+    }
 
     @RequestMapping("/hello")
     public String hello() {

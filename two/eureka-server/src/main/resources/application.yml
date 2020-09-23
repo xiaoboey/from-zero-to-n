@@ -1,0 +1,34 @@
+
+server:
+  port: 8761
+  address: localhost
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info", "shutdown"]
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  server:
+    port: 7761

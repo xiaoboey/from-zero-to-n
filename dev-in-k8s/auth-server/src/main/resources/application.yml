@@ -1,0 +1,40 @@
+server:
+  port: 8100
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: auth-server
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:D:\\temp\\local-db\\h2-two\\testdb
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  main:
+    # 后定义的bean覆盖之前的同名bean
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+#运行监控actuator的配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health", "info", "shutdown"]
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  server:
+    port: 7100

@@ -1,0 +1,37 @@
+
+server:
+  port: 8091
+  #address: localhost
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-two
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+security:
+  oauth2:
+    client:
+      access-token-uri: http://auth-server/oauth/token
+      grant-type: client_credentials, refresh_token, password
+      scope: server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info", "shutdown"]
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  server:
+    port: 7091

@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: eureka
+  namespace: default
+spec:
+  clusterIP: None
+  ports:
+    - name: http
+      port: 8761
+      protocol: TCP
+      targetPort: 8761
+    - name: http-actuator
+      port: 7761
+      protocol: TCP
+      targetPort: 7761
+  selector:
+    app: eureka

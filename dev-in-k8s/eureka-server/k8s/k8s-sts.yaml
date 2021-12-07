@@ -26,10 +26,12 @@ spec:
             - containerPort: 8761
             - containerPort: 7761
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
             - name: EUREKA_INSTANCE_HOST_NAME
               value: ${HOSTNAME}.eureka
             - name: EUREKA_INSTANCE_LIST
-              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka/,http://eureka-1.eureka.qcbm.svc.cluster.local:8761/eureka/,http://eureka-2.eureka.qcbm.svc.cluster.local:8761/eureka/"
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761,http://eureka-1.eureka.default.svc.cluster.local:8761,http://eureka-2.eureka.default.svc.cluster.local:8761"
 
           # 健康检查
           livenessProbe:

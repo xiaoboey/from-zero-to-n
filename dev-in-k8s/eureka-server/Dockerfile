@@ -3,10 +3,19 @@ FROM openjdk:8-jdk-alpine
 # 作者信息
 LABEL maintainer="xiaoqb@foxmail.com"
 
+# 修改alpine的源为阿里云的源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# 更新
+RUN apk upgrade --available && sync
+
+# 创建文件夹
 RUN mkdir /app
+# 设置当前的工作路径，后续的操作在这个路径下进行
 WORKDIR /app
+# 把编译后的jar复制到容器里
 ADD ./target/*.jar eureka-server.jar
 
+# 设置环境变量（这类变量可以在启动容器时设置，对应docker run的-e参数）
 ENV SPRING_PROFILES_ACTIVE=dev
 
 # 容器开放端口

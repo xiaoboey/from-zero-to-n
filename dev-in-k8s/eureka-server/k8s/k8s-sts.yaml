@@ -23,20 +23,25 @@ spec:
         - name: eureka
           image: eureka-server:v1
           ports:
-            - containerPort: 8761
-            - containerPort: 7761
+            - name: http
+              containerPort: 8761
+              protocol: TCP
+            - name: actuator
+              containerPort: 7761
+              protocol: TCP
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
-            - name: EUREKA_INSTANCE_HOST_NAME
+            - name: EUREKA_INSTANCE_HOSTNAME
               value: ${HOSTNAME}.eureka
             - name: EUREKA_INSTANCE_LIST
-              value: "http://eureka-0.eureka.default.svc.cluster.local:8761,http://eureka-1.eureka.default.svc.cluster.local:8761,http://eureka-2.eureka.default.svc.cluster.local:8761"
+              value: "http://eureka-0.eureka.default.svc.cluster.local:8761/eureka/,http://eureka-1.eureka.default.svc.cluster.local:8761/eureka/,http://eureka-2.eureka.default.svc.cluster.local:8761/eureka/"
 
           # 健康检查
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 7761
+              scheme: HTTP
             initialDelaySeconds: 20
             timeoutSeconds: 5

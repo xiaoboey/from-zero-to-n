@@ -10,9 +10,5 @@ spec:
       port: 8761
       protocol: TCP
       targetPort: 8761
-    - name: http-actuator
-      port: 7761
-      protocol: TCP
-      targetPort: 7761
   selector:
     app: eureka

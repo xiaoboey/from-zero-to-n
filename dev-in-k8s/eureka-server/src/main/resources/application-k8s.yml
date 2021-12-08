@@ -1,14 +1,10 @@
 
 eureka:
   instance:
-    hostname: ${EUREKA_INSTANCE_HOST_NAME}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME}
     prefer-ip-address: false
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: ${EUREKA_INSTANCE_LIST}
-  server:
-    response-cache-auto-expiration-in-seconds: 180
-    response-cache-update-interval-ms: 5000
-    eviction-interval-timer-in-ms: 5000

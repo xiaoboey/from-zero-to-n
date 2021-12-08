@@ -17,10 +17,12 @@ ADD ./target/*.jar eureka-server.jar
 
 # 设置环境变量（这类变量可以在启动容器时设置，对应docker run的-e参数）
 ENV SPRING_PROFILES_ACTIVE=dev
+ENV HTTP_PORT=8761
+ENV ACTUATOR_PORT=7761
 
 # 容器开放端口
-EXPOSE 8761
-EXPOSE 7761
+EXPOSE $HTTP_PORT
+EXPOSE $ACTUATOR_PORT
 
 # 容器启动执行命令
 # -XX:+UseContainerSupport 让JVM在容器环境里分配合理的堆内存

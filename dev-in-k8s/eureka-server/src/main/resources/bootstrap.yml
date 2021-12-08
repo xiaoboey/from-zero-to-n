@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: ${HTTP_PORT:8761}
   servlet:
     context-path: /
 
@@ -20,4 +20,4 @@ management:
     shutdown:
       enabled: true
   server:
-    port: 7761
+    port: ${ACTUATOR_PORT:7761}

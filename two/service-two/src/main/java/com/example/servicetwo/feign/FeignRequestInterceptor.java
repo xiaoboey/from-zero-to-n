@@ -30,7 +30,6 @@ public class FeignRequestInterceptor implements RequestInterceptor {
                 template.header(name, values);
 
             }
-            logger.info("Feign interceptor header: {}", template);
         }
     }
 }

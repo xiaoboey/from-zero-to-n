@@ -1,6 +1,5 @@
 package com.example.serviceone.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -18,12 +17,9 @@ import java.io.IOException;
 @Configuration
 public class JwtConfig {
 
-    @Autowired
-    JwtAccessTokenConverter jwtAccessTokenConverter;
-
     @Bean
     public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+        return new JwtTokenStore(jwtTokenEnhancer());
     }
 
     @Bean

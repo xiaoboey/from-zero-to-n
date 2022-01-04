@@ -4,6 +4,8 @@ import com.example.serviceone.feign.IAuthServerFeignClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PostFilter;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
  */
 @RestController
 public class OneController {
+    private final Logger logger = LoggerFactory.getLogger(OneController.class);
+
     @Value(("${server.port}"))
     private int port;
 
@@ -37,6 +41,7 @@ public class OneController {
 
     @RequestMapping("/hello")
     public String hello() {
+        logger.info("Call hello at: {}", new Date());
         return "Hello!";
     }
 

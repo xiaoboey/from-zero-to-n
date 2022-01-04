@@ -10,6 +10,10 @@ spring:
     active: dev
   application:
     name: service-two
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=5000,expireAfterWrite=10s
 
 eureka:
   client:
@@ -33,3 +37,5 @@ management:
       show-details: always
     shutdown:
       enabled: true
+  server:
+    port: 7091

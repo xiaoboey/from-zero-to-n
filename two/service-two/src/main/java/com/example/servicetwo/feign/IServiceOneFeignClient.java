@@ -1,6 +1,7 @@
 package com.example.servicetwo.feign;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Qualifier("serviceOneFeignClient")
 @FeignClient(value = "service-one", configuration = FeignRequestInterceptor.class, fallback = ServiceOneFallback.class)
 public interface IServiceOneFeignClient {
+    @Cacheable(value = "api-feign-test-hello")
     @PostMapping("/hello")
     String hello();
 

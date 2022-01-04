@@ -33,5 +33,3 @@ management:
       show-details: always
     shutdown:
       enabled: true
-  server:
-    port: 7091

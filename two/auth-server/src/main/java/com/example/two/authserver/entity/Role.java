@@ -8,6 +8,7 @@ import javax.persistence.*;
  * @author xiaoqb
  */
 @Entity
+@Table(name = "d_role")
 public class Role implements GrantedAuthority {
 
     @Id

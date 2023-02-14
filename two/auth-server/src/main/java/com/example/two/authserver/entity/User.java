@@ -12,6 +12,7 @@ import java.util.List;
  * @author xiaoqb
  */
 @Entity
+@Table(name = "d_user")
 public class User implements UserDetails, Serializable {
 
     @Id
